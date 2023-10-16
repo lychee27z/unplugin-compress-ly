@@ -1,0 +1,1007 @@
+{
+  "root": "D:/项目代码/image-min/unplugin-image-min/testProject",
+  "modules": [
+    {
+      "id": "\u0000vite/modulepreload-polyfill",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:modulepreload-polyfill",
+          "resolveId": 0
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "/img/a.png",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "unplugin-image-compress",
+          "transform": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 1
+    },
+    {
+      "id": "/img/b.png",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "unplugin-image-compress",
+          "transform": 2
+        }
+      ],
+      "virtual": true,
+      "totalTime": 2
+    },
+    {
+      "id": "/img/c.png",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "unplugin-image-compress",
+          "transform": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 1
+    },
+    {
+      "id": "/img/d.png",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "unplugin-image-compress",
+          "transform": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 1
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/api.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 9
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 11
+        }
+      ],
+      "virtual": false,
+      "totalTime": 9
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/app.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 9
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 9
+        }
+      ],
+      "virtual": false,
+      "totalTime": 9
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/component.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 8
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": false,
+      "totalTime": 8
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/context.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 6
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": false,
+      "totalTime": 6
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/hooks.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 8
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 3
+        }
+      ],
+      "virtual": false,
+      "totalTime": 8
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/index.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 57
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": false,
+      "totalTime": 57
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/util.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 8
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": false,
+      "totalTime": 8
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/const.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 56
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 15
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": false,
+      "totalTime": 56
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/env.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 75
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 20
+        }
+      ],
+      "virtual": false,
+      "totalTime": 75
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/index.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 209
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": false,
+      "totalTime": 209
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/plugin.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 76
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 4
+        }
+      ],
+      "virtual": false,
+      "totalTime": 76
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/proxy.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 44
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        }
+      ],
+      "virtual": false,
+      "totalTime": 44
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/time.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 72
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 2
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 4
+        }
+      ],
+      "virtual": false,
+      "totalTime": 72
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+reactivity@3.2.41/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 35
+        },
+        {
+          "name": "vite:define",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        }
+      ],
+      "virtual": false,
+      "totalTime": 36
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+runtime-core@3.2.41/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 143
+        },
+        {
+          "name": "vite:define",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 14
+        }
+      ],
+      "virtual": false,
+      "totalTime": 144
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+runtime-dom@3.2.41/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 63
+        },
+        {
+          "name": "vite:define",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": false,
+      "totalTime": 64
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+shared@3.2.41/node_modules/@vue/shared/dist/shared.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 123
+        },
+        {
+          "name": "vite:define",
+          "transform": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 10
+        }
+      ],
+      "virtual": false,
+      "totalTime": 123
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/vue-router@4.1.6_vue@3.2.41/node_modules/vue-router/dist/vue-router.mjs",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 156
+        },
+        {
+          "name": "vite:define",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": false,
+      "totalTime": 157
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/vue@3.2.41/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 264
+        },
+        {
+          "name": "vite:define",
+          "transform": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        }
+      ],
+      "virtual": false,
+      "totalTime": 264
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/index.html",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 4
+        },
+        {
+          "name": "vite:build-html",
+          "transform": 27
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": false,
+      "totalTime": 31
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/App.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 4
+        },
+        {
+          "name": "vite:vue",
+          "transform": 15
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": false,
+      "totalTime": 19
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/App.vue?vue&type=style&index=0&lang.scss",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:vue",
+          "transform": 0
+        },
+        {
+          "name": "vite:css",
+          "transform": 424
+        },
+        {
+          "name": "vite:vue",
+          "transform": 3
+        },
+        {
+          "name": "vite:css-post",
+          "transform": 0
+        }
+      ],
+      "virtual": true,
+      "totalTime": 427
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/assets/image/wallhaven-x61xdo.jpg",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "unplugin-image-compress",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": true,
+      "totalTime": 1
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/main.ts",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 13
+        },
+        {
+          "name": "vite:esbuild",
+          "transform": 11
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": false,
+      "totalTime": 24
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/router/index.ts",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 264
+        },
+        {
+          "name": "vite:esbuild",
+          "transform": 40
+        },
+        {
+          "name": "vite:build-import-analysis",
+          "transform": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": false,
+      "totalTime": 304
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/style.css",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 1
+        },
+        {
+          "name": "vite:css",
+          "transform": 0
+        },
+        {
+          "name": "vite:css-post",
+          "transform": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": false,
+      "totalTime": 1
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/about.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 145
+        },
+        {
+          "name": "vite:vue",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 2
+        }
+      ],
+      "virtual": false,
+      "totalTime": 146
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/about.vue?vue&type=style&index=0&scoped=b4d94b30&lang.css",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:vue",
+          "transform": 0
+        },
+        {
+          "name": "vite:css",
+          "transform": 0
+        },
+        {
+          "name": "vite:vue",
+          "transform": 3
+        },
+        {
+          "name": "vite:css-post",
+          "transform": 0
+        }
+      ],
+      "virtual": true,
+      "totalTime": 3
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/home.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:load-fallback",
+          "transform": 143
+        },
+        {
+          "name": "vite:vue",
+          "transform": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": false,
+      "totalTime": 144
+    }
+  ],
+  "ssrModules": [
+    {
+      "id": "\u0000vite/modulepreload-polyfill",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:modulepreload-polyfill",
+          "resolveId": 0
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/api.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 11
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/app.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 9
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/component.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/context.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/hooks.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 3
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/index.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/api/util.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/const.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 15
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/env.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 20
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/index.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/plugin.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 4
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/proxy.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+devtools-api@6.5.0/node_modules/@vue/devtools-api/lib/esm/time.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 2
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 4
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+reactivity@3.2.41/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+runtime-core@3.2.41/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 14
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+runtime-dom@3.2.41/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/@vue+shared@3.2.41/node_modules/@vue/shared/dist/shared.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 10
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/vue-router@4.1.6_vue@3.2.41/node_modules/vue-router/dist/vue-router.mjs",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/node_modules/.pnpm/vue@3.2.41/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 13
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 0
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        },
+        {
+          "name": "vite:resolve",
+          "resolveId": 6
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/index.html",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/App.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/assets/image/wallhaven-x61xdo.jpg",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 7
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/main.ts",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/router/index.ts",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 5
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/style.css",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 8
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/about.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 2
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    },
+    {
+      "id": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/home.vue",
+      "deps": [],
+      "plugins": [
+        {
+          "name": "vite:resolve",
+          "resolveId": 1
+        }
+      ],
+      "virtual": true,
+      "totalTime": 0
+    }
+  ]
+}

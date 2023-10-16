@@ -1,0 +1,106 @@
+{
+  "resolvedId": "D:/项目代码/image-min/unplugin-image-min/testProject/src/views/home.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div>\n    <!-- <img src=\"../assets/image/wallhaven-2ykjxm.png\" alt=\"\" /> -->\n  </div>\n</template>\n\n<script setup lang=\"ts\"></script>\n\n<style scoped></style>\n",
+      "start": 1697194394157,
+      "end": 1697194394300,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css",
+      "start": 1697194394300,
+      "end": 1697194394300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1697194394300,
+      "end": 1697194394300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1697194394300,
+      "end": 1697194394300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1697194394300,
+      "end": 1697194394300,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "const _sfc_main = {}\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache) {\n  return (_openBlock(), _createElementBlock(\"div\"))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1697194394300,
+      "end": 1697194394301,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:define",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1697194394301,
+      "end": 1697194394301,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1697194394302,
+      "end": 1697194394302,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1697194394302,
+      "end": 1697194394302,
+      "order": "normal"
+    }
+  ]
+}

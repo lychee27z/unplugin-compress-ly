@@ -1,0 +1,114 @@
+{
+  "resolvedId": "D:/项目代码/image-min/unplugin-image-min/testProject/src/main.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createApp } from 'vue';\nimport './style.css';\nimport App from './App.vue';\nimport Router from './router';\ncreateApp(App).use(Router).mount('#app');\n// createApp(App).mount('#app');\n",
+      "start": 1697194393792,
+      "end": 1697194393805,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css",
+      "start": 1697194393805,
+      "end": 1697194393805,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { createApp } from \"vue\";\nimport \"./style.css\";\nimport App from \"./App.vue\";\nimport Router from \"./router\";\ncreateApp(App).use(Router).mount(\"#app\");\n",
+      "start": 1697194393805,
+      "end": 1697194393816,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "D:/项目代码/image-min/unplugin-image-min/testProject/src/main.ts"
+        ],
+        "sourcesContent": [
+          "import { createApp } from 'vue';\nimport './style.css';\nimport App from './App.vue';\nimport Router from './router';\ncreateApp(App).use(Router).mount('#app');\n// createApp(App).mount('#app');\n"
+        ],
+        "mappings": "AAAA,SAAS,iBAAiB;AAC1B,OAAO;AACP,OAAO,SAAS;AAChB,OAAO,YAAY;AACnB,UAAU,GAAG,EAAE,IAAI,MAAM,EAAE,MAAM,MAAM;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1697194393816,
+      "end": 1697194393816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1697194393816,
+      "end": 1697194393816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1697194393816,
+      "end": 1697194393816,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1697194393816,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1697194393817,
+      "end": 1697194393817,
+      "order": "normal"
+    }
+  ]
+}

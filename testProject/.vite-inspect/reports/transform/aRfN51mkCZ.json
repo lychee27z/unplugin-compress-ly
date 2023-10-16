@@ -1,0 +1,102 @@
+{
+  "resolvedId": "D:/项目代码/image-min/unplugin-image-min/testProject/src/assets/image/wallhaven-x61xdo.jpg",
+  "transforms": [
+    {
+      "name": "unplugin-image-compress",
+      "result": "export default \"\\u002Fassets\\u002Fwallhaven-x61xdo-6917cde7.jpg\"",
+      "start": 1697194393866,
+      "end": 1697194393867,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css",
+      "start": 1697194393867,
+      "end": 1697194393867,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1697194393869,
+      "end": 1697194393870,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1697194393870,
+      "end": 1697194393870,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1697194393870,
+      "end": 1697194393870,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1697194393870,
+      "end": 1697194393870,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1697194393870,
+      "end": 1697194393871,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1697194394093,
+      "end": 1697194394093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1697194394094,
+      "end": 1697194394094,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1697194394094,
+      "end": 1697194394094,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1697194394094,
+      "end": 1697194394094,
+      "order": "normal"
+    }
+  ]
+}
