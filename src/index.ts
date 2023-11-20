@@ -6,7 +6,7 @@ import {
   createBundle,
   handleResolveOptions,
   loadBundleOptions,
-  deleteOriginImage,
+  handleCompressWebpack,
 } from "./core/utils";
 import type { ImageCompressOptions } from "./type/type";
 
@@ -42,13 +42,26 @@ export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
         },
       },
     },
-    webpack(complier) {
-      compiler.hooks.emit.tapAsync(
-        WEBPACK_PLUGIN_NAME,
-        (compilation, callback) => {
-          console.log(compilation);
-        }
-      );
+    webpack(config, { isProduction, command }) {
+      if (isProduction) {
+        config.plugins.push({
+          apply: (complier) => {
+            complier.hooks.emit.tapAsync(
+              WEBPACK_PLUGIN_NAME,
+              async (compilation, callback) => {
+                try {
+                  console.log(compilation);
+                  handleResolveOptions(resolveOptions, config);
+                  await handleCompressWebpack(compilation);
+                  callback();
+                } catch (e) {
+                  callback();
+                }
+              }
+            );
+          },
+        });
+      }
     },
   };
 };

@@ -45,9 +45,9 @@ export function handleResolveOptions(
     "node_modules",
     userOptions.cacheDir! ?? ".compressImage"
   );
-  const isConvert = isConvertImageType(userOptions.conversion);
+  const isConvert = userOptions.conversion;
   const outputPath = resolve(root, outDir);
-  // 用户插件配置 + vite项目配置 + 内部配置
+  // 用户插件配置 + 项目配置 + 内部配置
   const continuesConfig = {
     pwd,
     command,
@@ -383,4 +383,119 @@ export async function transformHtmlBundle() {
         : htmlCodeString.replace(pattern, item.to);
     await promises.writeFile(resolve(process.cwd(), htmlBundlePath), newFile);
   });
+}
+
+export async function handleCompressWebpack(compilation) {
+  chunks = compilation;
+  Object.keys(compilation.assets).forEach((fileName) => {
+    //判断是否为图片资源
+    const imageFlag = parseId(fileName);
+    if (imageFlag) {
+      imagePaths.push(fileName);
+    }
+  });
+  await createWebpackBundle();
+}
+
+async function createWebpackBundle() {
+  if (!(await isExists(finalConfig!.cacheDir))) {
+    await mkdir(finalConfig!.cacheDir, { recursive: true });
+  }
+  if (imagePaths.length > 0) {
+    const imageCompressGroup = imagePaths.map(async (item) => {
+      if (extname(item) !== ".svg") {
+        const sharpCompress = await createWebpackSharpBundle(item);
+        return sharpCompress;
+      } else {
+        const svgCompress = await createSvgWebpackBundle(item);
+        return svgCompress;
+      }
+    });
+    const result = await Promise.all(imageCompressGroup);
+    createBundleFile(chunks.assets, result);
+  } else {
+    //没有需要压缩的图片
+  }
+}
+
+async function createWebpackSharpBundle(item) {
+  const { cacheDir } = finalConfig!;
+  const imageSrcRes = createBundleImageSrc(item, finalConfig!.options);
+  const base = basename(item, extname(item));
+  const imageName = `${base}-${imageSrcRes}`;
+  const cachedFilename = join(cacheDir, imageName);
+  let sharpFileBuffer;
+  if (!(await isCache(cachedFilename))) {
+    sharpFileBuffer = await loadWebpackImage(item, finalConfig!.options);
+  } else {
+    sharpFileBuffer = await promises.readFile(cachedFilename);
+  }
+  if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
+    await promises.writeFile(cachedFilename, sharpFileBuffer);
+  }
+  return {
+    fileName: item,
+    source: () => sharpFileBuffer,
+    size: () => sharpFileBuffer.length,
+  };
+}
+
+async function loadWebpackImage(url: string, options: any) {
+  const image = transformToSharpWebpack(url, chunks.assets[url], options);
+  return image;
+}
+
+async function transformToSharpWebpack(
+  imagePath: string,
+  target: any,
+  options: any
+) {
+  const type = extname(imagePath).slice(1);
+  const currentTransform = options.conversion?.find((item) => {
+    item.from === type;
+  });
+  let res;
+  if (currentTransform !== undefined) {
+    const option = {
+      ...sharpOptions[type],
+      ...options.compress[currentTransform.to],
+    };
+    res = await (sharp(target.source()) as any)
+      [sharpEncodeMap.get(currentTransform.to)!](option)
+      .toBuffer();
+  } else {
+    const option = {
+      ...sharpOptions[type],
+      ...options.compress[type],
+    };
+    res = await (sharp(target.source()) as any)
+      [sharpEncodeMap.get(type)!](option)
+      .toBuffer();
+  }
+  return res;
+}
+
+async function createSvgWebpackBundle(item) {
+  const svfCode = chunks.assets[item].source();
+  const imageSrcRes = createBundleImageSrc(item, finalConfig!.options);
+  const base = basename(item, extname(item));
+  const { cacheDir } = finalConfig!;
+  const imageName = `${base}-${imageSrcRes}`;
+  const cachedFilename = join(cacheDir, imageName);
+  let svgBuffer;
+  if (!(await isCache(cachedFilename))) {
+    svgBuffer = optimize(svfCode, {
+      multipass: true,
+    });
+  } else {
+    svgBuffer = await promises.readFile(cachedFilename);
+  }
+  if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
+    await promises.writeFile(cachedFilename, svgBuffer);
+  }
+  return {
+    fileName: item,
+    source: svgBuffer.data,
+    size: svgBuffer.data.length,
+  };
 }
