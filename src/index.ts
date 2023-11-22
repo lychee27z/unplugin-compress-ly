@@ -10,7 +10,8 @@ import {
 } from "./core/utils";
 import type { ImageCompressOptions } from "./type/type";
 
-const WEBPACK_PLUGIN_NAME = "unplugin:webpack";
+const WEBPACK_PLUGIN_NAME = "unplugin-imagemin-ly";
+let isBuild = false;
 
 export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
   const resolveOptions = Object.assign({}, deafultOptions, options);
@@ -20,7 +21,7 @@ export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
     enforce: resolveOptions.beforeBundle ? "pre" : "post",
     vite: {
       configResolved(config: ResolvedConfig) {
-        handleResolveOptions(resolveOptions, config);
+        handleResolveOptions(resolveOptions, config, "vite");
       },
       load(id: any) {
         if (resolveOptions.beforeBundle) {
@@ -42,25 +43,26 @@ export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
         },
       },
     },
-    webpack(config, { isProduction, command }) {
-      if (isProduction) {
-        config.plugins.push({
-          apply: (complier) => {
-            complier.hooks.emit.tapAsync(
-              WEBPACK_PLUGIN_NAME,
-              async (compilation, callback) => {
-                try {
-                  console.log(compilation);
-                  handleResolveOptions(resolveOptions, config);
-                  await handleCompressWebpack(compilation);
-                  callback();
-                } catch (e) {
-                  callback();
-                }
-              }
-            );
-          },
-        });
+    webpack(compiler) {
+      isBuild = compiler.options.mode === "production";
+      if (isBuild) {
+        compiler.hooks.emit.tapAsync(
+          WEBPACK_PLUGIN_NAME,
+          async (compilation, callback) => {
+            try {
+              console.log(options);
+              handleResolveOptions(
+                resolveOptions,
+                {} as ResolvedConfig,
+                "webpack"
+              );
+              await handleCompressWebpack(compilation);
+              callback();
+            } catch (e) {
+              callback();
+            }
+          }
+        );
       }
     },
   };

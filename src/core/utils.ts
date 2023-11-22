@@ -28,42 +28,64 @@ let chunks;
  */
 export function handleResolveOptions(
   userOptions: ImageCompressOptions,
-  config: ResolvedConfig
+  config: ResolvedConfig,
+  frameWork: string
 ) {
-  const {
-    command,
-    base,
-    root,
-    build: { assetsDir, outDir },
-    publicDir,
-  } = config;
-  const pwd = process.cwd();
-  // 判断当前指令是否为打包
-  const isBuild = command === "build";
-  const cacheDir = join(
-    root,
-    "node_modules",
-    userOptions.cacheDir! ?? ".compressImage"
-  );
-  const isConvert = userOptions.conversion;
-  const outputPath = resolve(root, outDir);
-  // 用户插件配置 + 项目配置 + 内部配置
-  const continuesConfig = {
-    pwd,
-    command,
-    base,
-    root,
-    options: userOptions,
-    assetsDir,
-    outDir,
-    publicDir,
-    isBuild,
-    cacheDir,
-    isConvert,
-    outputPath,
-  };
-  finalConfig = continuesConfig;
-  // mergeConfig = mergeOptions(outputDefaultOptions, continuesConfig);
+  if (frameWork === "vite") {
+    const {
+      command,
+      base,
+      root,
+      build: { assetsDir, outDir },
+      publicDir,
+    } = config;
+    const pwd = process.cwd();
+    // 判断当前指令是否为打包
+    const isBuild = command === "build";
+    const cacheDir = join(
+      root,
+      "node_modules",
+      userOptions.cacheDir! ?? ".compressImage"
+    );
+    const isConvert = userOptions.conversion;
+    const outputPath = resolve(root, outDir);
+    // 用户插件配置 + 项目配置 + 内部配置
+    const continuesConfig = {
+      pwd,
+      command,
+      base,
+      root,
+      options: userOptions,
+      assetsDir,
+      outDir,
+      publicDir,
+      isBuild,
+      cacheDir,
+      isConvert,
+      outputPath,
+    };
+    finalConfig = continuesConfig;
+    // mergeConfig = mergeOptions(outputDefaultOptions, continuesConfig);
+  } else {
+    //webpack不用vite配置带有的环境配置
+    console.log("cce");
+
+    const pwd = process.cwd();
+    const root = pwd;
+    const cacheDir = join(
+      root,
+      "node_modules",
+      userOptions.cacheDir! ?? ".compressImage"
+    );
+    const isConvert = userOptions.conversion;
+    finalConfig = {
+      pwd,
+      root,
+      cacheDir,
+      options: userOptions,
+      isConvert,
+    };
+  }
 }
 
 /**
@@ -389,6 +411,8 @@ export async function handleCompressWebpack(compilation) {
   chunks = compilation;
   Object.keys(compilation.assets).forEach((fileName) => {
     //判断是否为图片资源
+    console.log(fileName);
+
     const imageFlag = parseId(fileName);
     if (imageFlag) {
       imagePaths.push(fileName);
