@@ -1,4 +1,4 @@
-import { join, resolve, extname, basename } from "pathe";
+import { join, resolve, extname, basename, dirname } from "pathe";
 import type { ResolvedConfig } from "vite";
 import type { ImageCompressOptions } from "../type/type";
 import { createFilter } from "@rollup/pluginutils";
@@ -11,7 +11,7 @@ import { sharpEncodeMap } from "./sharp";
 import sharp from "sharp";
 import { optimize } from "svgo";
 const extRE = /(jpeg|png|webp|jpg|wb2|avif)$/i;
-const extPRE = /\.(jpeg|png|webp|jpg|wb2|avif)$/i;
+const extPRE = /\.(jpeg|png|webp|jpg|wb2|avif|svg)$/i;
 let finalConfig;
 const imageFilter = createFilter(extPRE, [
   /[\\/]node_modules[\\/]/,
@@ -19,6 +19,7 @@ const imageFilter = createFilter(extPRE, [
 ]);
 //load中监听引入的图片路径
 const imagePaths: string[] = [];
+const codePaths: string[] = [];
 let chunks;
 
 /**
@@ -68,8 +69,6 @@ export function handleResolveOptions(
     // mergeConfig = mergeOptions(outputDefaultOptions, continuesConfig);
   } else {
     //webpack不用vite配置带有的环境配置
-    console.log("cce");
-
     const pwd = process.cwd();
     const root = pwd;
     const cacheDir = join(
@@ -164,7 +163,7 @@ export function parseId(id: string) {
 export function createBundleImageSrc(filePath: string, options: any) {
   const finalType =
     options.conversion?.find((item: any) => {
-      item.from === extname(filePath).slice(1);
+      return item.from === extname(filePath).slice(1);
     }) ?? extname(filePath).slice(1);
   const hashId = createImageId(
     filePath,
@@ -308,7 +307,7 @@ async function transformToSharp(imagePath: string, options: any) {
     : join(options.publicDir, imagePath);
   const type = extname(imagePath).slice(1);
   const currentTransform = options.conversion?.find((item) => {
-    item.from === type;
+    return item.from === type;
   });
   let res;
   if (currentTransform !== undefined) {
@@ -407,15 +406,16 @@ export async function transformHtmlBundle() {
   });
 }
 
-export async function handleCompressWebpack(compilation) {
-  chunks = compilation;
-  Object.keys(compilation.assets).forEach((fileName) => {
+export async function handleCompressWebpack(assets, compilation) {
+  chunks = assets;
+  Object.keys(assets).forEach((fileName) => {
     //判断是否为图片资源
-    console.log(fileName);
-
-    const imageFlag = parseId(fileName);
+    const imageFlag = imageFilter(fileName);
     if (imageFlag) {
       imagePaths.push(fileName);
+    } else {
+      //如果是js、css等文件，则将其中的静态资源引用替换
+      codePaths.push(fileName);
     }
   });
   await createWebpackBundle();
@@ -426,6 +426,13 @@ async function createWebpackBundle() {
     await mkdir(finalConfig!.cacheDir, { recursive: true });
   }
   if (imagePaths.length > 0) {
+    codePaths.map((fileName) => {
+      const source = chunks[fileName].source();
+      imagePaths.map((imagePath) => {
+        const newSouce = modifyBundle(imagePath, source);
+        chunks[fileName].source = newSouce;
+      });
+    });
     const imageCompressGroup = imagePaths.map(async (item) => {
       if (extname(item) !== ".svg") {
         const sharpCompress = await createWebpackSharpBundle(item);
@@ -436,7 +443,7 @@ async function createWebpackBundle() {
       }
     });
     const result = await Promise.all(imageCompressGroup);
-    createBundleFile(chunks.assets, result);
+    createWebpackBundleFile(chunks, result);
   } else {
     //没有需要压缩的图片
   }
@@ -458,14 +465,15 @@ async function createWebpackSharpBundle(item) {
     await promises.writeFile(cachedFilename, sharpFileBuffer);
   }
   return {
-    fileName: item,
+    fileName: join(dirname(item), imageName),
+    oldFileName: item,
     source: () => sharpFileBuffer,
     size: () => sharpFileBuffer.length,
   };
 }
 
 async function loadWebpackImage(url: string, options: any) {
-  const image = transformToSharpWebpack(url, chunks.assets[url], options);
+  const image = transformToSharpWebpack(url, chunks[url], options);
   return image;
 }
 
@@ -476,7 +484,7 @@ async function transformToSharpWebpack(
 ) {
   const type = extname(imagePath).slice(1);
   const currentTransform = options.conversion?.find((item) => {
-    item.from === type;
+    return item.from === type;
   });
   let res;
   if (currentTransform !== undefined) {
@@ -500,7 +508,7 @@ async function transformToSharpWebpack(
 }
 
 async function createSvgWebpackBundle(item) {
-  const svfCode = chunks.assets[item].source();
+  const svfCode = chunks[item].source();
   const imageSrcRes = createBundleImageSrc(item, finalConfig!.options);
   const base = basename(item, extname(item));
   const { cacheDir } = finalConfig!;
@@ -515,11 +523,33 @@ async function createSvgWebpackBundle(item) {
     svgBuffer = await promises.readFile(cachedFilename);
   }
   if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
-    await promises.writeFile(cachedFilename, svgBuffer);
+    try {
+      await promises.writeFile(cachedFilename, svgBuffer.data);
+    } catch (err) {}
   }
   return {
-    fileName: item,
-    source: svgBuffer.data,
-    size: svgBuffer.data.length,
+    fileName: join(dirname(item), imageName),
+    oldFileName: item,
+    source: () => svgBuffer.data,
+    size: () => svgBuffer.data.length,
   };
+}
+
+function createWebpackBundleFile(bundler, result) {
+  result.map((asset) => {
+    if (asset.fileName !== asset.oldFileName) {
+      delete bundler[asset.oldFileName];
+    }
+    bundler[asset.fileName] = asset;
+  });
+}
+
+function modifyBundle(item, source) {
+  const imageSrcRes = createBundleImageSrc(item, finalConfig!.options);
+  const base = basename(item, extname(item));
+  const imageName = `${base}-${imageSrcRes}`;
+  const fileName = join(dirname(item), imageName);
+  const pattern = new RegExp(item, "g");
+  const modifiedSource = source.replace(pattern, fileName);
+  return modifiedSource;
 }

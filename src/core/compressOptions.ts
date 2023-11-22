@@ -133,7 +133,7 @@ export const sharpOptions: any = {
   },
 };
 
-//应该是squoosh的配置，先不需要引入
+//squoosh的配置，先不需要引入
 export const outputDefaultOptions: ImageMinOptions = {
   jpeg: {
     extension: /.(jpg|jpeg)$/,

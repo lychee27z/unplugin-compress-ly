@@ -106,5 +106,5 @@ module.exports = {
     },
     cache: {
         type: 'filesystem', // 使用文件缓存
-    },
+    }
 }

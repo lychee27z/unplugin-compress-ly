@@ -9,6 +9,7 @@ import {
   handleCompressWebpack,
 } from "./core/utils";
 import type { ImageCompressOptions } from "./type/type";
+import { Compilation } from "webpack";
 
 const WEBPACK_PLUGIN_NAME = "unplugin-imagemin-ly";
 let isBuild = false;
@@ -46,21 +47,29 @@ export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
     webpack(compiler) {
       isBuild = compiler.options.mode === "production";
       if (isBuild) {
-        compiler.hooks.emit.tapAsync(
+        compiler.hooks.thisCompilation.tap(
           WEBPACK_PLUGIN_NAME,
-          async (compilation, callback) => {
-            try {
-              console.log(options);
-              handleResolveOptions(
-                resolveOptions,
-                {} as ResolvedConfig,
-                "webpack"
-              );
-              await handleCompressWebpack(compilation);
-              callback();
-            } catch (e) {
-              callback();
-            }
+          (compilation) => {
+            compilation.hooks.processAssets.tapAsync(
+              {
+                name: WEBPACK_PLUGIN_NAME,
+                stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+              },
+              async (assets, callback) => {
+                try {
+                  //插件获取配置参数压缩
+                  handleResolveOptions(
+                    resolveOptions,
+                    {} as ResolvedConfig,
+                    "webpack"
+                  );
+                  await handleCompressWebpack(assets, compilation);
+                  callback();
+                } catch (e) {
+                  callback();
+                }
+              }
+            );
           }
         );
       }
