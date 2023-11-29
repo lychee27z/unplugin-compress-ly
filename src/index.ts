@@ -7,17 +7,18 @@ import {
   handleResolveOptions,
   loadBundleOptions,
   handleCompressWebpack,
+  handleEmit,
 } from "./core/utils";
 import type { ImageCompressOptions } from "./type/type";
-import { Compilation } from "webpack";
-
-const WEBPACK_PLUGIN_NAME = "unplugin-imagemin-ly";
+import webpack from "webpack";
+const Compilation = webpack.Compilation;
+const WEBPACK_PLUGIN_NAME = "unplugin-compress-ly";
 let isBuild = false;
 
 export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
   const resolveOptions = Object.assign({}, deafultOptions, options);
   return {
-    name: "unplugin-image-compress",
+    name: "unplugin-compress-ly",
     apply: "build",
     enforce: resolveOptions.beforeBundle ? "pre" : "post",
     vite: {
@@ -70,6 +71,13 @@ export const unpluginFactory: any = (options: ImageCompressOptions = {}) => {
                 }
               }
             );
+          }
+        );
+        compiler.hooks.emit.tapAsync(
+          WEBPACK_PLUGIN_NAME,
+          async (compilation, callback) => {
+            await handleEmit();
+            callback();
           }
         );
       }

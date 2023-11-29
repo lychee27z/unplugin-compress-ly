@@ -1,9 +1,9 @@
 {
-  "name": "unplugin-imagemin-ly",
+  "name": "unplugin-compress-ly",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@8.6.12",
-  "description": "",
+  "description": "兼容vite与webpack的图片压缩插件",
   "license": "MIT",
   "homepage": "https://github.com/antfu/unplugin-starter#readme",
   "repository": {

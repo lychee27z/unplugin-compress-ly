@@ -12,15 +12,27 @@ import sharp from "sharp";
 import { optimize } from "svgo";
 const extRE = /(jpeg|png|webp|jpg|wb2|avif)$/i;
 const extPRE = /\.(jpeg|png|webp|jpg|wb2|avif|svg)$/i;
-let finalConfig;
+let finalConfig: {
+  publicDir?: any;
+  pwd?: string;
+  command?: "build" | "serve";
+  base?: string;
+  root?: string;
+  options?: ImageCompressOptions;
+  assetsDir?: any;
+  outDir?: any;
+  isBuild?: boolean;
+  cacheDir?: any;
+  isConvert?: any;
+  outputPath?: string;
+};
 const imageFilter = createFilter(extPRE, [
   /[\\/]node_modules[\\/]/,
   /[\\/]\.git[\\/]/,
 ]);
 //load中监听引入的图片路径
 const imagePaths: string[] = [];
-const codePaths: string[] = [];
-let chunks;
+let chunks: { [x: string]: { source: () => string; size: () => number } };
 
 /**
  * @description 处理vite配置
@@ -66,7 +78,6 @@ export function handleResolveOptions(
       outputPath,
     };
     finalConfig = continuesConfig;
-    // mergeConfig = mergeOptions(outputDefaultOptions, continuesConfig);
   } else {
     //webpack不用vite配置带有的环境配置
     const pwd = process.cwd();
@@ -117,8 +128,6 @@ export function loadBundleOptions(id: string) {
  */
 export function createDefaultValue(imageFlag: boolean, id: string) {
   if (imageFlag) {
-    console.log(id, "load");
-
     const parserId = parseId(id);
     imagePaths.push(parserId.path);
     const imageSrcRes = createBundleImageSrc(
@@ -193,7 +202,6 @@ export async function createBundle(bundler) {
   if (!(await isExists(finalConfig!.cacheDir))) {
     await mkdir(finalConfig!.cacheDir, { recursive: true });
   }
-  //省略获取node运行版本过程，目前不需要
   if (imagePaths.length > 0) {
     const imageCompressGroup = imagePaths.map(async (item) => {
       if (extname(item) !== ".svg") {
@@ -268,7 +276,7 @@ async function createSharpBundle(item) {
   } else {
     sharpFileBuffer = await promises.readFile(cachedFilename);
   }
-  if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
+  if (finalConfig!.options?.cache && !(await isExists(cachedFilename))) {
     await promises.writeFile(cachedFilename, sharpFileBuffer);
   }
   const source = await writeImageFile(sharpFileBuffer, finalConfig!, imageName);
@@ -304,7 +312,7 @@ async function loadImage(url: string, options: any) {
 async function transformToSharp(imagePath: string, options: any) {
   const pathls = imagePath.includes(":")
     ? imagePath
-    : join(options.publicDir, imagePath);
+    : join(finalConfig.publicDir, imagePath);
   const type = extname(imagePath).slice(1);
   const currentTransform = options.conversion?.find((item) => {
     return item.from === type;
@@ -336,7 +344,7 @@ async function transformToSharp(imagePath: string, options: any) {
  * @returns
  */
 async function isCache(path: string) {
-  return finalConfig!.options.cache && isExists(path);
+  return finalConfig!.options?.cache && isExists(path);
 }
 
 /**
@@ -358,7 +366,7 @@ export async function isExists(path: string) {
 export async function closeBundleCallback() {
   // await deleteOriginImage(finalConfig, imagePaths);
   //暂时不用
-  if (!finalConfig!.options.beforeBundle) {
+  if (!finalConfig!.options?.beforeBundle) {
     await transformHtmlBundle();
   }
   return true;
@@ -396,7 +404,7 @@ export async function transformHtmlBundle() {
   const htmlBuffer = Buffer.from(html);
   const htmlCodeString = htmlBuffer.toString();
   let newFile = "";
-  finalConfig!.options.conversion.map(async (item) => {
+  finalConfig!.options?.conversion.map(async (item) => {
     const pattern = new RegExp(item.from, "g");
     newFile =
       newFile.length > 0
@@ -406,16 +414,13 @@ export async function transformHtmlBundle() {
   });
 }
 
-export async function handleCompressWebpack(assets, compilation) {
+export async function handleCompressWebpack(assets: {}, compilation: any) {
   chunks = assets;
   Object.keys(assets).forEach((fileName) => {
     //判断是否为图片资源
     const imageFlag = imageFilter(fileName);
     if (imageFlag) {
       imagePaths.push(fileName);
-    } else {
-      //如果是js、css等文件，则将其中的静态资源引用替换
-      codePaths.push(fileName);
     }
   });
   await createWebpackBundle();
@@ -426,13 +431,6 @@ async function createWebpackBundle() {
     await mkdir(finalConfig!.cacheDir, { recursive: true });
   }
   if (imagePaths.length > 0) {
-    codePaths.map((fileName) => {
-      const source = chunks[fileName].source();
-      imagePaths.map((imagePath) => {
-        const newSouce = modifyBundle(imagePath, source);
-        chunks[fileName].source = newSouce;
-      });
-    });
     const imageCompressGroup = imagePaths.map(async (item) => {
       if (extname(item) !== ".svg") {
         const sharpCompress = await createWebpackSharpBundle(item);
@@ -461,7 +459,7 @@ async function createWebpackSharpBundle(item) {
   } else {
     sharpFileBuffer = await promises.readFile(cachedFilename);
   }
-  if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
+  if (finalConfig!.options?.cache && !(await isExists(cachedFilename))) {
     await promises.writeFile(cachedFilename, sharpFileBuffer);
   }
   return {
@@ -516,25 +514,32 @@ async function createSvgWebpackBundle(item) {
   const cachedFilename = join(cacheDir, imageName);
   let svgBuffer;
   if (!(await isCache(cachedFilename))) {
-    svgBuffer = optimize(svfCode, {
-      multipass: true,
-    });
+    svgBuffer = Buffer.from(
+      optimize(svfCode, {
+        multipass: true,
+      }).data
+    );
   } else {
     svgBuffer = await promises.readFile(cachedFilename);
   }
-  if (finalConfig!.options.cache && !(await isExists(cachedFilename))) {
+  if (finalConfig!.options?.cache && !(await isExists(cachedFilename))) {
     try {
-      await promises.writeFile(cachedFilename, svgBuffer.data);
+      await promises.writeFile(cachedFilename, svgBuffer);
     } catch (err) {}
   }
   return {
     fileName: join(dirname(item), imageName),
     oldFileName: item,
-    source: () => svgBuffer.data,
-    size: () => svgBuffer.data.length,
+    source: () => Buffer.from(svgBuffer),
+    size: () => Buffer.byteLength(svgBuffer),
   };
 }
 
+/**
+ *
+ * @param bundler
+ * @param result
+ */
 function createWebpackBundleFile(bundler, result) {
   result.map((asset) => {
     if (asset.fileName !== asset.oldFileName) {
@@ -544,12 +549,42 @@ function createWebpackBundleFile(bundler, result) {
   });
 }
 
-function modifyBundle(item, source) {
+export async function handleEmit() {
+  try {
+    await Promise.all(
+      Object.keys(chunks).map(async (fileName) => {
+        const imageFlag = imageFilter(fileName);
+        if (
+          !imageFlag &&
+          (extname(fileName) === ".js" || extname(fileName) === ".css")
+        ) {
+          let source = chunks[fileName].source();
+          let newSource = {
+            source: "",
+          };
+          imagePaths.map((imagePath) => {
+            modifyBundle(imagePath, source, newSource);
+          });
+          chunks[fileName] = {
+            source: () => newSource.source,
+            size: () => newSource.source.length,
+          };
+        }
+      })
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function modifyBundle(item, source, newSource) {
   const imageSrcRes = createBundleImageSrc(item, finalConfig!.options);
   const base = basename(item, extname(item));
   const imageName = `${base}-${imageSrcRes}`;
   const fileName = join(dirname(item), imageName);
   const pattern = new RegExp(item, "g");
-  const modifiedSource = source.replace(pattern, fileName);
-  return modifiedSource;
+  newSource.source =
+    newSource.source.length > 0
+      ? newSource.source.replace(pattern, fileName)
+      : source.replace(pattern, fileName);
 }

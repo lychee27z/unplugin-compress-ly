@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import imagemin from "../src/vite";
-import path from "path";
+import imagemin from "unplugin-compress-ly/vite";
 import Inspect from "vite-plugin-inspect";
+import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,11 +21,7 @@ export default defineConfig({
   plugins: [
     vue(),
     imagemin({
-      // Default mode sharp. support squoosh and sharp
-      // mode: 'sharp',
       cache: true,
-      // beforeBundle: true,
-      // Default configuration options for compressing different pictures
       compress: {
         jpg: {
           quality: 10,
@@ -40,11 +36,6 @@ export default defineConfig({
           quality: 10,
         },
       },
-      // conversion: [
-      //   { from: "jpeg", to: "webp" },
-      //   { from: "jpg", to: "webp" },
-      //   { from: "png", to: "webp" },
-      // ],
     }),
     Inspect({
       build: true,
