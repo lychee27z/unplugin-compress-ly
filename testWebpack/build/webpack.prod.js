@@ -10,7 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 // const globAll = require('glob-all')
 // const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const ImageMinPlugin = require('unplugin-compress-ly').unplugin.webpack
+const ImageMinPlugin = require('unplugin-compress-ly/webpack')
 
 module.exports = merge(baseConfig, {
     mode: 'production',
